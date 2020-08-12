@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  svc:
+    build: .
+    image: ${ECR_URL}/${ORGANIZATION}/${CI_PROJECT_NAME}-svc:${COMMIT_SHA}
+    networks:
+      default:
+      #kafka:
+      #api:
+      #logging: Three standard networks in each swarm
+      #You may or may not need docker swarm enabled
+    environment:
+      #environment variables, or anything that varies by environment
+      #- KAFKA_SERVER=kafka
+      # also used to inject secret variables
+
+
+
+networks:
+  # This is used to communicate within the stack, bridge or overlay
+  default:
+    driver: overlay 
+
+  # This is used to communicate between Kafka and the API/Worker services
+  # kafka:
+  #   driver: overlay
+  #   external: true...docker won't try to create this
+  # start-compose
+  # depoy-to-swarm
+  # Look at scripts in Pipeline Starter Project
