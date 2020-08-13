@@ -1,7 +1,7 @@
 //src/main.rs
 
 //Dependency declarations
-use actix_web::{web, App, HttpServer, dev::ServiceRequest, Error, HttpServer};
+use actix_web::{web, App, HttpServer, dev::ServiceRequest, Error};
 use diesel::prelude::*; //Connecting to Postgres Database - type-safe abstraction between Rust/SQL
 use diesel::r2d2::{self, ConnectionManager};
 

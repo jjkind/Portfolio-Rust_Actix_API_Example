@@ -1,5 +1,7 @@
 # rust-actix-api-example
 
+See this reference: https://auth0.com/blog/build-an-api-in-rust-with-jwt-authentication-using-actix-web/
+
 Example project for running a RESTful API that leverages Rust/Actix Server connected to Postgres SQL DB (running in a container)
 
 ## Local Development Process
@@ -29,6 +31,23 @@ If you need to remove all of your existing containers the following is a useful 
 docker rm $(docker ps -aq)
 ```
 
+Once you have a POstgres server up and running in a container on Docker you may want to test your ability to connect to this container from your WSL environment.  To do this first install the `postgresql-client` in WSL:
+
+```
+sudo apt install postgresql-client
+```
+Once you have this client installed locally you will be able to run the `psql` command to connect to Postgres locally:
+
+```
+psql postgres:://postgres:password@localhost:5432
+```
+This will bring you into your Postgres sql instance.  Run `\l` to view all of the databases that reside on your server instance.  Note that postgres is the default username for Postgres.  This username and password can be changed in your docker-compose.test.yml file if desired.  For production these should become environmental variables.
+
+The following are several useful Postgres commands:
+
+- List databases on your psql instance: `\list`
+- Connect to a specific database: `\connect dbname` or `\c dbname`
+
 ### Install Diesel ORM/Query Builder for Rust
 
 We will utilize Diesel to map objects between Rust and Postgres and Build Queries.  You will want to install Diesel locally for testing, but it will be integrated into our API Service container through its inclusion in our docker-compose.yml
@@ -50,3 +69,6 @@ Note that your path will be specific to your machine.  Also note that you'll hav
 cd /
 cd mnt/c/<path to your project>
 ```
+
+
+
